@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [status, setStatus] = useState("正在保存书签...");
-  const [query, setQuery] = useState("");
+  const [bookmark, setBookmark] = useState<{
+    title: string;
+    url: string;
+  } | null>(null);
 
   useEffect(() => {
     const saveBookmark = async () => {
       const formData = new URLSearchParams(window.location.search);
-      const url = formData.get("link");
-
-      setQuery(window.location.search);
+      const title = formData.get("title");
+      const url = formData.get("text");
 
       if (!url) {
         setStatus("没有检测到网址");
@@ -19,7 +21,8 @@ export default function Page() {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      setStatus(`已成功保存书签 (${url})！`);
+      setStatus(`已成功保存书签！`);
+      setBookmark({ title: title || "Untitled", url });
       setTimeout(() => window.close(), 1500);
     };
 
@@ -29,7 +32,12 @@ export default function Page() {
   return (
     <div>
       <div>{status}</div>
-      <div>Query: {query}</div>
+      {bookmark && (
+        <div>
+          <h2>{bookmark.url}</h2>
+          <p>{bookmark.title}</p>
+        </div>
+      )}
     </div>
   );
 }
