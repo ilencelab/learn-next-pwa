@@ -8,7 +8,7 @@ export default function Page() {
   useEffect(() => {
     const saveBookmark = async () => {
       const formData = new URLSearchParams(window.location.search);
-      const url = formData.get("url");
+      const url = formData.get("link");
       const title = formData.get("title") || url;
 
       if (!url) {
@@ -19,7 +19,7 @@ export default function Page() {
       console.log(url, title);
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      setStatus("已成功保存书签！");
+      setStatus(`已成功保存书签 (${url})！`);
       setTimeout(() => window.close(), 1500);
     };
 
