@@ -12,7 +12,7 @@ export default function Page() {
   useEffect(() => {
     const formData = new URLSearchParams(window.location.search);
     const title = formData.get("title");
-    const url = formData.get("text");
+    const url = formData.get("url");
 
     if (!url) {
       setStatus(`没有检测到网址\n${window.location.search.slice(1)}\n${url}`);
