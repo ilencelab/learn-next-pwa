@@ -27,7 +27,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex h-screen items-center justify-center text-lg">
+    <div>
       <div>{status}</div>
       <div>Query: {query}</div>
     </div>
