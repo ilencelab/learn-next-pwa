@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Learn Next PWA",
   description: "",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
