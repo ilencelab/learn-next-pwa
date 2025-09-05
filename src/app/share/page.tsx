@@ -10,23 +10,17 @@ export default function Page() {
   } | null>(null);
 
   useEffect(() => {
-    const saveBookmark = async () => {
-      const formData = new URLSearchParams(window.location.search);
-      const title = formData.get("title");
-      const url = formData.get("text");
+    const formData = new URLSearchParams(window.location.search);
+    const title = formData.get("title");
+    const url = formData.get("text");
 
-      if (!url) {
-        setStatus("没有检测到网址");
-        return;
-      }
+    if (!url) {
+      setStatus("没有检测到网址");
+      return;
+    }
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setStatus(`已成功保存书签！`);
-      setBookmark({ title: title || "Untitled", url });
-      setTimeout(() => window.close(), 1500);
-    };
-
-    saveBookmark();
+    setStatus("保存成功");
+    setBookmark({ title: title || "Untitled", url });
   }, []);
 
   return (
@@ -36,6 +30,7 @@ export default function Page() {
         <div>
           <h2>{bookmark.url}</h2>
           <p>{bookmark.title}</p>
+          <button onClick={() => window.close()}>保存</button>
         </div>
       )}
     </div>
