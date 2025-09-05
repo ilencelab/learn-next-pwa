@@ -15,7 +15,7 @@ export default function Page() {
     const url = formData.get("text");
 
     if (!url) {
-      setStatus("没有检测到网址");
+      setStatus(`没有检测到网址\n(${window.location.search.slice(1)})`);
       return;
     }
 
